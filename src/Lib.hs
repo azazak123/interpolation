@@ -1,11 +1,7 @@
-module Lib () where
+module Lib (interpolateLagrange) where
 
-import Data.Coerce (coerce)
+import Point (Point (..), Points (..))
 import Polynomial (Polynomial (..))
-
-newtype Point a = Point (a, a)
-
-newtype Points a = Points [Point a]
 
 interpolateLagrange (Points p) = sum $ fmap addend p
   where

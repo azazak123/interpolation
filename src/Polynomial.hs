@@ -24,8 +24,6 @@ instance (Num a) => Num (Polynomial a) where
     where
       mul (index, coef) = Polynomial $ replicate index 0 ++ fmap (* coef) p2
 
-(/) (Polynomial p) divisor = fmap (Prelude./ divisor) p
-
 polynomialIncreaseSize additionalSize (Polynomial p) = (++) p $ replicate additionalSize 0
 
 polynomialZipWithDefault f (Polynomial p1) (Polynomial p2)
