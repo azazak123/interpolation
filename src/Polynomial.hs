@@ -1,7 +1,6 @@
 module Polynomial (Polynomial (..), toFunc) where
 
 import Data.Coerce (coerce)
-import GHC.ExecutionStack (Location (functionName))
 
 -- | Polynomial type
 newtype Polynomial a = Polynomial [a]
