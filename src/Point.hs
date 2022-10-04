@@ -1,4 +1,4 @@
-module Point (Point (..), Points (..)) where
+module Point where
 
 newtype Point a = Point (a, a)
 

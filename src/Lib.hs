@@ -1,7 +1,7 @@
 module Lib (interpolateLagrange) where
 
-import Point (Point (..), Points (..))
-import Polynomial (Polynomial (..))
+import Point
+import Polynomial
 
 interpolateLagrange (Points p) = sum $ fmap addend p
   where
