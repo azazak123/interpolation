@@ -3,6 +3,7 @@ module Lib (interpolateLagrange) where
 import Point
 import Polynomial
 
+-- | Calculate Lagrange polynomial for provided points
 interpolateLagrange (Points p) = sum $ fmap addend p
   where
     addend (Point (x, y)) = (*) (Polynomial [y]) $ product $ fmap factor p

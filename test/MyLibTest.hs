@@ -8,7 +8,7 @@ import Polynomial
 import Test.Tasty
 import Test.Tasty.QuickCheck
 
-eps = 0.000001
+eps = 0.00001
 
 main = defaultMain tests
 
