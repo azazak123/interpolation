@@ -1,7 +1,13 @@
-module Lib () where
+module Lib (interpolateLagrange) where
 
-import Polynomial (Polynomial (..))
+import Point
+import Polynomial
 
-newtype Point a = Point (a, a)
-
-newtype Points a = Points [Point a]
+-- | Calculate Lagrange polynomial for provided points
+interpolateLagrange (Points p) = sum $ fmap addend p
+  where
+    addend (Point (x, y)) = (*) (Polynomial [y]) $ product $ fmap factor p
+      where
+        factor (Point (x1, y1))
+          | x1 /= x = Polynomial [-x1 / (x - x1), 1 / (x - x1)]
+          | otherwise = Polynomial [1]
