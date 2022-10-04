@@ -1,4 +1,4 @@
-module Polynomial (Polynomial (..)) where
+module Polynomial (Polynomial (..), toFunc) where
 
 import Data.Coerce (coerce)
 
@@ -23,6 +23,8 @@ instance (Num a) => Num (Polynomial a) where
   (*) (Polynomial p1) (Polynomial p2) = sum . fmap mul . zip [0 ..] $ p1
     where
       mul (index, coef) = Polynomial $ replicate index 0 ++ fmap (* coef) p2
+
+toFunc (Polynomial p) x = foldl (\acc (level, coef) -> acc + coef * x ^^ level) 0 . zip [0 ..] $ p
 
 polynomialIncreaseSize additionalSize (Polynomial p) = (++) p $ replicate additionalSize 0
 
