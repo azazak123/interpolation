@@ -15,42 +15,51 @@ main = defaultMain tests
 tests =
   testGroup
     "Tests"
-    [test]
+    [lagrangeTest, newtonTest]
 
-test =
+lagrangeTest =
   testGroup
-    "(checked by QuickCheck)"
-    [ testProperty "Square check" square,
-      testProperty "Cubic check" cubic,
-      testProperty "Line check" line,
-      testProperty "Hard function check" hardFunc
+    "Lagrange"
+    [ testProperty "Square check" $ square interpolateLagrange,
+      testProperty "Cubic check" $ cubic interpolateLagrange,
+      testProperty "Line check" $ line interpolateLagrange,
+      testProperty "Hard function check" $ hardFunc interpolateLagrange
+    ]
+
+newtonTest =
+  testGroup
+    "Newton"
+    [ testProperty "Square check" $ square interpolateNewton,
+      testProperty "Cubic check" $ cubic interpolateNewton,
+      testProperty "Line check" $ line interpolateNewton,
+      testProperty "Hard function check" $ hardFunc interpolateNewton
     ]
 
 -- | f(x) = x^2
-square :: Double -> Bool
-square x = (< eps) . abs $ x * x - result
+square :: (Points Double -> Polynomial Double) -> Double -> Bool
+square f x = (< eps) . abs $ x * x - result
   where
-    result = toFunc (interpolateLagrange $ Points [Point (0, 0), Point (2, 4), Point (-2, 4)]) x
+    result = toFunc (f $ Points [Point (0, 0), Point (2, 4), Point (-2, 4)]) x
 
 -- | f(x) = x^3 - 1
-cubic :: Double -> Bool
-cubic x = (< eps) . abs $ (x * x * x - 1) - result
+cubic :: (Points Double -> Polynomial Double) -> Double -> Bool
+cubic f x = (< eps) . abs $ (x * x * x - 1) - result
   where
-    result = toFunc (interpolateLagrange $ Points [Point (0, -1), Point (2, 7), Point (-2, -9), Point (1, 0)]) x
+    result = toFunc (f $ Points [Point (0, -1), Point (2, 7), Point (-2, -9), Point (1, 0)]) x
 
 -- | f(x)= -2x
-line :: Double -> Bool
-line x = (< eps) . abs $ (-2 * x) - result
+line :: (Points Double -> Polynomial Double) -> Double -> Bool
+line f x = (< eps) . abs $ (-2 * x) - result
   where
-    result = toFunc (interpolateLagrange $ Points [Point (0, 0), Point (2, -4), Point (-2, 4)]) x
+    result = toFunc (f $ Points [Point (0, 0), Point (2, -4), Point (-2, 4)]) x
 
 -- | f(x) = x^4 + 6x^3 - 10x
-hardFunc :: Double -> Bool
-hardFunc x = (< eps) . abs $ (x ^^ 4 - 6 * x ^^ 3 - 10 * x) - result
+hardFunc :: (Points Double -> Polynomial Double) -> Double -> Bool
+hardFunc f x = (< eps) . abs $ (x ^^ 4 - 6 * x ^^ 3 - 10 * x) - result
   where
     result =
       toFunc
-        ( interpolateLagrange $
+        ( f $
             Points
               [ Point (0, 0),
                 Point (1, -15),
