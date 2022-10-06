@@ -1,4 +1,4 @@
-module Point where
+module Math.Interpolation.Point where
 
 -- | One point
 newtype Point a = Point (a, a)

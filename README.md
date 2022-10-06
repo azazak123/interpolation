@@ -13,9 +13,9 @@ Library provides two techniques of calculating interpolation:
 
 ``` haskell
 -- imports
-import Lib
-import Point
-import Polynomial
+import Math.Interpolation
+import Math.Interpolation.Point
+import Math.Interpolation.Polynomial
 
 -- calculate Lagrange Polynomial for these points (f(x) = x^2)
 squarePolynomial = interpolateLagrange $ Points [Point (0, 0), Point (2, 4), Point (-2, 4)]
