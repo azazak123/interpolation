@@ -2,9 +2,9 @@ module Main (main) where
 
 import Data.List
 import Data.Ord
-import Lib
-import Point
-import Polynomial
+import Math.Interpolation
+import Math.Interpolation.Point
+import Math.Interpolation.Polynomial
 import Test.Tasty
 import Test.Tasty.QuickCheck
 

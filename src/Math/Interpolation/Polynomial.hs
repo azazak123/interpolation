@@ -1,4 +1,4 @@
-module Polynomial (Polynomial (..), toFunc) where
+module Math.Interpolation.Polynomial (Polynomial (..), toFunc) where
 
 import Data.Coerce (coerce)
 

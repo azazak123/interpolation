@@ -49,9 +49,9 @@ extra-source-files: README.md
 
 library
     -- Modules exported by the library.
-    exposed-modules:  Lib
-                      Polynomial
-                      Point
+    exposed-modules:  Math.Interpolation
+                      Math.Interpolation.Polynomial
+                      Math.Interpolation.Point
 
     -- Modules included in this library but not exported.
     -- other-modules:

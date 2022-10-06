@@ -1,7 +1,7 @@
-module Lib (interpolateLagrange, interpolateNewton) where
+module Math.Interpolation (interpolateLagrange, interpolateNewton) where
 
-import Point
-import Polynomial
+import Math.Interpolation.Point as Point
+import Math.Interpolation.Polynomial
 
 -- | Calculate Lagrange polynomial for provided points
 interpolateLagrange (Points p) = sum $ fmap addend p
