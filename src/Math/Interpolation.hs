@@ -1,5 +1,6 @@
 module Math.Interpolation (interpolateLagrange, interpolateNewton) where
 
+import Control.Arrow (first)
 import Math.Interpolation.Point as Point
 import Math.Interpolation.Polynomial
 
@@ -23,3 +24,15 @@ interpolateNewton (Points p) = sum . fmap addend . zip [1 ..] $ p
         factor (Point (x, y)) = Polynomial [-x, 1]
         coef = Polynomial [sum $ fraction <$> usedPoints]
         fraction (Point (x, y)) = (/) y . product . fmap (x -) . filter (/= x) $ Point.fst <$> usedPoints
+
+interpolateSquares m (Points p) =
+  fmap (first d)
+    . zip [0 ..]
+    . fmap (fmap c . take m . iterate (+ 1))
+    . take m
+    $ [0 ..]
+  where
+    c j = sum $ (^^ j) . Point.fst <$> p
+    d k = sum $ fmap addend p
+      where
+        addend (Point (x, y)) = y * x ^^ k
