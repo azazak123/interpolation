@@ -52,6 +52,7 @@ library
     exposed-modules:  Math.Interpolation
                       Math.Interpolation.Polynomial
                       Math.Interpolation.Point
+                      Math.Interpolation.Equations
 
     -- Modules included in this library but not exported.
     -- other-modules:

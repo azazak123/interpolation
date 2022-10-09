@@ -1,4 +1,4 @@
-module Math.Interpolation.Polynomial (Polynomial (..), toFunc) where
+module Math.Interpolation.Polynomial (Polynomial (..), toFunc, toList) where
 
 import Data.Coerce (coerce)
 
@@ -29,6 +29,10 @@ instance (Num a) => Num (Polynomial a) where
 
 -- | Calculate function using Lagrange Polynomial and provided argument
 toFunc (Polynomial p) x = foldl (\acc (level, coef) -> acc + coef * x ^^ level) 0 . zip [0 ..] $ p
+
+-- | Convert Polynomial to list
+toList :: Polynomial a -> [a]
+toList = coerce
 
 -- | Adds zeros to the end of provided Polynomial
 polynomialIncreaseSize additionalSize (Polynomial p) = (++) p $ replicate additionalSize 0
