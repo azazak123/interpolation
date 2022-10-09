@@ -55,7 +55,7 @@ library
                       Math.Interpolation.Equations
 
     -- Modules included in this library but not exported.
-    -- other-modules:
+    other-modules:    Math.Interpolation.Utils
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

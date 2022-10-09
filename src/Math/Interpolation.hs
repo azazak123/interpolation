@@ -27,7 +27,7 @@ interpolateNewton (Points p) = sum . fmap addend . zip [1 ..] $ p
 
 interpolateSquares m (Points p) =
   Polynomial
-    $ (`gauss` consts)
+    $ (`solveGauss` consts)
       . fmap (fmap c . take m . iterate (+ 1))
       . take m
     $ [0 ..]
