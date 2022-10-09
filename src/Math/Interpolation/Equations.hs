@@ -8,6 +8,8 @@ type Vector a = [a]
 
 type Matrix a = [Vector a]
 
+-- | Solve System of linear algebraic equations for provided coefficient matrix and constants vector
+solveGauss :: Fractional a => [[a]] -> [a] -> [a]
 solveGauss m v =
   foldl getCurrentRoot []
     . zip [0 ..]

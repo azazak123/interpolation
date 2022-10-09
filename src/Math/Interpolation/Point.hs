@@ -6,6 +6,8 @@ newtype Point a = Point (a, a)
 -- | List of points
 newtype Points a = Points [Point a]
 
-fst (Point (x, y)) = x
+fst :: Point a -> a
+fst (Point (x, _)) = x
 
-snd (Point (x, y)) = y
+snd :: Point a -> a
+snd (Point (_, y)) = y
