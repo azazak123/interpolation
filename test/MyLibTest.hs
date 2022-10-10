@@ -8,14 +8,14 @@ import Math.Interpolation.Polynomial
 import Test.Tasty
 import Test.Tasty.QuickCheck
 
-eps = 0.00001
+eps = 0.0001
 
 main = defaultMain tests
 
 tests =
   testGroup
     "Tests"
-    [lagrangeTest, newtonTest]
+    [lagrangeTest, newtonTest, squareTest]
 
 lagrangeTest =
   testGroup
@@ -33,6 +33,15 @@ newtonTest =
       testProperty "Cubic check" $ cubic interpolateNewton,
       testProperty "Line check" $ line interpolateNewton,
       testProperty "Hard function check" $ hardFunc interpolateNewton
+    ]
+
+squareTest =
+  testGroup
+    "Square"
+    [ testProperty "Square check" $ square $ interpolateSquares 3,
+      testProperty "Cubic check" $ cubic $ interpolateSquares 4,
+      testProperty "Line check" $ line $ interpolateSquares 2,
+      testProperty "Hard function check" $ hardFunc $ interpolateSquares 5
     ]
 
 -- | f(x) = x^2
