@@ -28,7 +28,7 @@ instance (Num a) => Num (Polynomial a) where
       mul (index, coef) = Polynomial $ replicate index 0 ++ fmap (* coef) p2
 
 -- | Calculate function using Lagrange Polynomial and provided argument
-toFunc :: Fractional c => Polynomial c -> c -> c
+toFunc :: Fractional a => Polynomial a -> a -> a
 toFunc (Polynomial p) x = foldl (\acc (level, coef) -> acc + coef * x ^^ level) 0 . zip [0 :: Integer ..] $ p
 
 -- | Convert Polynomial to list

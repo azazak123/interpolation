@@ -1,4 +1,4 @@
 module Math.Interpolation.Utils where
 
-dup :: b -> (b, b)
+dup :: a -> (a, a)
 dup x = (x, x)
