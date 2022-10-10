@@ -28,7 +28,7 @@ interpolateNewton (Points p) = sum . fmap addend . zip [1 ..] $ p
         fraction (Point (x1, y1)) = (/) y1 . product . fmap (x1 -) . filter (/= x1) $ Point.fst <$> usedPoints
 
 -- | Calculate Polynomial for provided points using square algorithm
-interpolateSquares :: Fractional a => Int -> Points a -> Polynomial a
+interpolateSquares :: (Eq a, Fractional a) => Int -> Points a -> Polynomial a
 interpolateSquares m (Points p) =
   Polynomial
     $ (`solveGauss` consts)
