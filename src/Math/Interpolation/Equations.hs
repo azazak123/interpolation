@@ -1,4 +1,4 @@
-module Math.Interpolation.Equations where
+module Math.Interpolation.Equations (solveGauss, Vector, Matrix) where
 
 import Control.Arrow (first)
 import Data.Bifunctor (bimap)
