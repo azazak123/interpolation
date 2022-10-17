@@ -25,7 +25,7 @@ squarePolynomial = interpolateLagrange $ Points [Point (0, 0), Point (2, 4), Poi
 squarePolynomial = interpolateNewton $ Points [Point (0, 0), Point (2, 4), Point (-2, 4)]
 
 -- or we can use square algorithm
-squarePolynomial = interpolateSquares 3 $ Points [Point (0, 0), Point (2, 4), Point (-2, 4)]
+squarePolynomial = interpolateSquares 2 $ Points [Point (0, 0), Point (2, 4), Point (-2, 4)]
 
 -- get function from received Polynomial
 square = toFunc $ squarePolynomial

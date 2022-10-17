@@ -33,8 +33,8 @@ interpolateSquares :: (Eq a, Fractional a) => Int -> Points a -> Polynomial a
 interpolateSquares m (Points p) =
   Polynomial
     $ (`solveGauss` consts)
-      . fmap (fmap c . take m . iterate (+ (1 :: Integer)))
-      . take m
+      . fmap (fmap c . take (m + 1) . iterate (+ (1 :: Integer)))
+      . take (m + 1)
     $ [0 ..]
   where
     consts = fmap d [0 :: Integer ..]

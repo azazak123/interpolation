@@ -38,10 +38,10 @@ newtonTest =
 squareTest =
   testGroup
     "Square"
-    [ testProperty "Square check" $ square $ interpolateSquares 3,
-      testProperty "Cubic check" $ cubic $ interpolateSquares 4,
-      testProperty "Line check" $ line $ interpolateSquares 2,
-      testProperty "Hard function check" $ hardFunc $ interpolateSquares 5
+    [ testProperty "Square check" $ square $ interpolateSquares 2,
+      testProperty "Cubic check" $ cubic $ interpolateSquares 3,
+      testProperty "Line check" $ line $ interpolateSquares 1,
+      testProperty "Hard function check" $ hardFunc $ interpolateSquares 4
     ]
 
 -- | f(x) = x^2
